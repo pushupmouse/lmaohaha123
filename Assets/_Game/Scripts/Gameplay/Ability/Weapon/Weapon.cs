@@ -55,21 +55,20 @@ public class Weapon : MonoBehaviour
         
         var projectile = Instantiate(_projectilePrefab, spawnPoint, Quaternion.identity);
         
-        projectile.Init(GetFinalDamage(), _playerPenetration, directionNormalized);
+        projectile.Init(GetDamage(), _playerPenetration, directionNormalized);
     }
 
-    private float GetFinalDamage()
+    private float GetDamage()
     {
-        var baseDamage = _playerAttack.Value;
-        
-        var amplifiedDamage = baseDamage + baseDamage * _playerAmp.Value;
+        var damage = _playerAttack.Value * (1 + _playerAmp.Value);
         
         bool isCriticalHit = Random.value < _playerCritRate.Value;
 
-        var finalDamage = isCriticalHit ?
-            amplifiedDamage + amplifiedDamage * _playerCritMult.Value :
-            amplifiedDamage;
+        if (isCriticalHit)
+        {
+            damage *= _playerCritMult.Value;
+        }
         
-        return finalDamage;
+        return damage;
     }
 }

@@ -73,19 +73,19 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, float penetration)
     {
-        if (penetration > _finalDefense)
+        if (penetration >= 1)
         {
             _currentHealth.Add(-damage);
         }
         else
         {
-            var reducedDefense = _finalDefense - penetration;
+            var effectiveDefense = _finalDefense - (_finalDefense * penetration) ;
 
-            var damageReduction = reducedDefense / (_finalDefense + _defCoefficient);
+            var damageMultiplier = 1 - (effectiveDefense / (effectiveDefense + _defCoefficient));
 
-            var reducedDamage = damage - (damage * damageReduction);
+            var finalDamage = damage * damageMultiplier;
 
-            _currentHealth.Add(-reducedDamage);
+            _currentHealth.Add(-finalDamage);
         }
     }
 

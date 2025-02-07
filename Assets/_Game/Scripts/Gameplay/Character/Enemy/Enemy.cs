@@ -27,14 +27,14 @@ public class Enemy : MonoBehaviour, IDamageable
     private class EnemyStat
     {
         [DataField(1)] public string Attack;
-        [DataField(2)] public string AttackSpeed;
-        [DataField(3)] public string CritRate;
-        [DataField(4)] public string CritMult;
-        [DataField(5)] public string Amp;
-        [DataField(6)] public string Penetration;
-        [DataField(7)] public string MaxHealth;
-        [DataField(8)] public string Defense;
-        [DataField(10)] public string Range;
+        [DataField(2)] public string MaxHealth;
+        [DataField(3)] public string Defense;
+        [DataField(5)] public string AttackSpeed;
+        [DataField(6)] public string Range;
+        [DataField(7)] public string CritRate;
+        [DataField(8)] public string CritMult;
+        [DataField(9)] public string Amp;
+        [DataField(10)] public string Penetration;
     }
     
     private void OnEnable()
@@ -85,24 +85,23 @@ public class Enemy : MonoBehaviour, IDamageable
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<Player>();
-            player.TakeDamage(GetFinalDamage(), _penetration);
+            player.TakeDamage(GetDamage(), _penetration);
             Die();
         }
     }
     
-    private float GetFinalDamage()
+    private float GetDamage()
     {
-        var baseDamage = _attack;
-        
-        var amplifiedDamage = baseDamage + baseDamage * _amp;
+        var damage = _attack * (1 + _amp);
         
         bool isCriticalHit = Random.value < _critRate;
 
-        var finalDamage = isCriticalHit ?
-            amplifiedDamage + amplifiedDamage * _critMult :
-            amplifiedDamage;
+        if (isCriticalHit)
+        {
+            damage *= _critMult;
+        }
         
-        return finalDamage;
+        return damage;
     }
 
     public void OnFinalMaxHealthChanged(float newMaxHealth)
@@ -129,19 +128,19 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public void TakeDamage(float damage, float penetration)
     {
-        if (penetration > _defense)
+        if (penetration >= 1)
         {
             _runtimeCurrentHealth.Add(-damage);
         }
         else
         {
-            var reducedDefense = _defense - penetration;
+            var effectiveDefense = _defense - (_defense * penetration) ;
 
-            var damageReduction = reducedDefense / (_defense + _defCoefficient);
+            var damageMultiplier = 1 - (effectiveDefense / (effectiveDefense + _defCoefficient));
 
-            var reducedDamage = damage - (damage * damageReduction);
+            var finalDamage = damage * damageMultiplier;
 
-            _runtimeCurrentHealth.Add(-reducedDamage);
+            _runtimeCurrentHealth.Add(-finalDamage);
         }
     }
 }

@@ -13,7 +13,7 @@ public class StatIncreaseData : AbilityData
     [SerializeField] private FloatVariable _stat;
     [SerializeField] private StatType _statType;
     [SerializeField] private StatIncreaseType _statIncreaseType;
-    private FloatReference _increase;
+    private float _increase;
     private bool _isPercent;
     private RarityType _rarityType;
     
@@ -45,14 +45,14 @@ public class StatIncreaseData : AbilityData
             return;
         }
         
-        _increase.Value = float.Parse(list[index].IncreaseValue);
+        _increase = float.Parse(list[index].IncreaseValue);
         _isPercent = Convert.ToBoolean(list[index].IsPercent);
         _rarityType = (RarityType)Enum.Parse(typeof(RarityType), list[index].RarityType);
     }
     
     public override void Apply()
     {
-        var increase = _increase.Value;
+        var increase = _increase;
         
         _stat.Value += increase;
         
@@ -62,7 +62,7 @@ public class StatIncreaseData : AbilityData
     public override string GetDescription()
     {
         _description = "+{0} " + _statIncreaseType.GetEnumDescription() + " " + _statType.GetEnumDescription();
-        var formattedValue = $"{(_isPercent ? _increase.Value * 100 : _increase.Value)}{(_isPercent ? "%" : "")}";
+        var formattedValue = $"{(_isPercent ? _increase * 100 : _increase)}{(_isPercent ? "%" : "")}";
         return string.Format(_description, formattedValue);
     }
 

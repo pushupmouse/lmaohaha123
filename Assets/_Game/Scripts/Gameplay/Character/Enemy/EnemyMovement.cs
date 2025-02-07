@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     
     private class EnemyStat
     {
-        [DataField(9)] public string Speed;
+        [DataField(4)] public string Speed;
     }
 
     private void OnEnable()

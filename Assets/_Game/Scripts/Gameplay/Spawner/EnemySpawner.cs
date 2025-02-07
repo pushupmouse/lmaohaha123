@@ -84,6 +84,6 @@ public enum EnemyType
     Tank = 2,
     Rogue = 3,
     Slayer = 4,
-    Sniper = 5,
-    Joker = 6,
+    Joker = 5,
+    Sniper = 6,
 }
