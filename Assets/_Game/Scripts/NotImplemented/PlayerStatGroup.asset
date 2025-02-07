@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85244bcdafb73604585c08d48a34e20b, type: 3}
+  m_Name: PlayerStatGroup
+  m_EditorClassIdentifier: 
+  _stats:
+  - statType: 1
+    statData: {fileID: 11400000, guid: 2a6198a810ec9e14b997e5f15723a451, type: 2}
+  - statType: 2
+    statData: {fileID: 11400000, guid: ddd94a5b237942c469f0c04cb8046076, type: 2}
+  - statType: 3
+    statData: {fileID: 11400000, guid: 2de5686027775b646b1691fbfcb4cc94, type: 2}
+  - statType: 4
+    statData: {fileID: 11400000, guid: ba68f078a221017418e3e0a49a1fcf71, type: 2}
+  - statType: 5
+    statData: {fileID: 11400000, guid: 6c718d1f87300cb408aa41091881ee80, type: 2}
+  - statType: 6
+    statData: {fileID: 11400000, guid: 09051f6b1636dc742ad4aa2c1d8b48ca, type: 2}
+  - statType: 7
+    statData: {fileID: 11400000, guid: 18d4643b34ddd6643b4a2f09fca4c7d3, type: 2}
+  - statType: 8
+    statData: {fileID: 11400000, guid: dc699f10b523c3a4793fef8461c726d5, type: 2}
+  - statType: 9
+    statData: {fileID: 11400000, guid: f0b8d47e9db9ee84386f80664224c4d5, type: 2}
