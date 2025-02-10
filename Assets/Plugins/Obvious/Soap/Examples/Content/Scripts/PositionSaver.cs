@@ -4,7 +4,7 @@ namespace Obvious.Soap.Example
 {
     public class PositionSaver : MonoBehaviour
     {
-        [SerializeField] private Vector3Variable _vector3Variable = null;
+        [SerializeField] private Vector3Variable _vector3Variable;
 
         private void Start()
         {

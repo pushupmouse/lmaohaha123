@@ -10,12 +10,12 @@ namespace Obvious.Soap.Example
       
         public void OnEnable()
         {
-            Invoke(nameof(Disable),_duration);
+            Invoke(nameof(Destroy),_duration);
         }
 
-        private void Disable()
+        private void Destroy()
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

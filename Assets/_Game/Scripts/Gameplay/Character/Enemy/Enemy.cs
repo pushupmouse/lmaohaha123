@@ -1,43 +1,37 @@
-using System;
 using Obvious.Soap;
 using UnityEngine;
 using Yade.Runtime;
-using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyType _type;
     [SerializeField] private YadeSheetData _initEnemyStatsData;
+    [SerializeField] private YadeSheetData _enemyGrowthData;
+    [SerializeField] private IntVariable _currentRoundPhase;
     [SerializeField] private ScriptableListEnemy _scriptableListEnemy;
     [SerializeField] private FloatVariable _defCoefficient;
     [field: SerializeField] public HealthBar HealthBar { get; set; }
-    private float _attack;
-    private float _attackSpeed;
-    private float _critRate;
-    private float _critMult;
-    private float _amp;
-    private float _penetration;
+
     private float _maxHealth;
     private float _defense;
-    private float _range;
-    
+    private float _maxHealthMult;
+    private float _defenseMult;
     private FloatVariable _runtimeMaxHealth;
     private FloatVariable _runtimeCurrentHealth;
         
     private class EnemyStat
     {
-        [DataField(1)] public string Attack;
         [DataField(2)] public string MaxHealth;
         [DataField(3)] public string Defense;
-        [DataField(5)] public string AttackSpeed;
-        [DataField(6)] public string Range;
-        [DataField(7)] public string CritRate;
-        [DataField(8)] public string CritMult;
-        [DataField(9)] public string Amp;
-        [DataField(10)] public string Penetration;
+    }
+        
+    private class EnemyGrowth
+    {
+        [DataField(2)] public string MaxHealth;
+        [DataField(3)] public string Defense;
     }
     
-    private void OnEnable()
+    private void Start()
     {
         Init();
     }
@@ -50,19 +44,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Init()
     {
-        var list = _initEnemyStatsData.AsList<EnemyStat>();
-        
         int index = (int)_type;
+        var growthList = _enemyGrowthData.AsList<EnemyGrowth>();
+        _maxHealthMult = float.Parse(growthList[index].MaxHealth);
+        _defenseMult = float.Parse(growthList[index].Defense);
         
-        _attack = float.Parse(list[index].Attack);
-        _attackSpeed = float.Parse(list[index].AttackSpeed);
-        _critRate = float.Parse(list[index].CritRate);
-        _critMult = float.Parse(list[index].CritMult);
-        _amp = float.Parse(list[index].Amp);
-        _penetration = float.Parse(list[index].Penetration);
-        _maxHealth = float.Parse(list[index].MaxHealth);
-        _defense = float.Parse(list[index].Defense);
-        _range = float.Parse(list[index].Range);
+        var statList = _initEnemyStatsData.AsList<EnemyStat>();
+        
+        _maxHealth = float.Parse(statList[index].MaxHealth) * (1 + _maxHealthMult * _currentRoundPhase.Value);
+        _defense = float.Parse(statList[index].Defense) * (1 + _defenseMult * _currentRoundPhase.Value);
         
         if (_runtimeMaxHealth == null)
             _runtimeMaxHealth = SoapUtils.CreateRuntimeInstance<FloatVariable>($"float_{gameObject.name}MaxHealth");
@@ -78,30 +68,6 @@ public class Enemy : MonoBehaviour, IDamageable
         _runtimeCurrentHealth.Value = _runtimeMaxHealth;
         
         _scriptableListEnemy.Add(this);
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            var player = other.GetComponent<Player>();
-            player.TakeDamage(GetDamage(), _penetration);
-            Die();
-        }
-    }
-    
-    private float GetDamage()
-    {
-        var damage = _attack * (1 + _amp);
-        
-        bool isCriticalHit = Random.value < _critRate;
-
-        if (isCriticalHit)
-        {
-            damage *= _critMult;
-        }
-        
-        return damage;
     }
 
     public void OnFinalMaxHealthChanged(float newMaxHealth)
@@ -122,8 +88,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Die()
     {
         _scriptableListEnemy.Remove(this);
-        // Destroy(gameObject);
-        ObjectPool.Instance.ReturnObjectToPool(gameObject);
+        Destroy(gameObject);
     }
     
     public void TakeDamage(float damage, float penetration)

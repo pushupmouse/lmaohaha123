@@ -17,6 +17,6 @@ public class ExpSpawner : MonoBehaviour
     
     private void OnEnemyDied(Enemy obj)
     {
-        Instantiate(_expPickupPrefab.gameObject, obj.transform.position, Quaternion.identity);
+        Instantiate(_expPickupPrefab.gameObject, obj.transform.position, Quaternion.identity, transform);
     }
 }

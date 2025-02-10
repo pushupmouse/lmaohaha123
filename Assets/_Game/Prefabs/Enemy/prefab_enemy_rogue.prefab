@@ -534,6 +534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 3
   _initEnemyStatsData: {fileID: 11400000, guid: b914fac8156c50742abbda3af8c0218c, type: 2}
+  _enemyGrowthData: {fileID: 11400000, guid: ca15424f911fd3a4db26fc77a94c15ee, type: 2}
+  _currentRoundPhase: {fileID: 11400000, guid: 80ab0fd2bd78993479c715daec61f8ac, type: 2}
   _scriptableListEnemy: {fileID: 11400000, guid: cdfe4484af28777498318fea71204234, type: 2}
   _defCoefficient: {fileID: 11400000, guid: 05e579ade1d07714f895c39348781ebb, type: 2}
   <HealthBar>k__BackingField: {fileID: 7423276086807041092}
@@ -550,8 +552,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 3
+  _attackType: 0
   _initEnemyStatsData: {fileID: 11400000, guid: b914fac8156c50742abbda3af8c0218c, type: 2}
+  _enemyGrowthData: {fileID: 11400000, guid: ca15424f911fd3a4db26fc77a94c15ee, type: 2}
+  _currentRoundPhase: {fileID: 11400000, guid: 80ab0fd2bd78993479c715daec61f8ac, type: 2}
   _playerPosition: {fileID: 11400000, guid: 7f00d73d564d74e4e8bc1644d6024398, type: 2}
+  _projectilePrefab: {fileID: 3908915352975549034, guid: fa04fbfc07b5aec43815c15a121bd86c, type: 3}
+  _slashPrefab: {fileID: 6442028997789671114, guid: 390160ae98e1a824483a198d87cef786, type: 3}
+  _spawnProjectileOffset:
+    UseLocal: 1
+    LocalValue: 0.5
+    Variable: {fileID: 0}
+  _spawnSlashOffset:
+    UseLocal: 1
+    LocalValue: 1.5
+    Variable: {fileID: 0}
 --- !u!1 &7982006422365852357
 GameObject:
   m_ObjectHideFlags: 0

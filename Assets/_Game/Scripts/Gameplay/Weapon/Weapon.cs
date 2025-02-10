@@ -1,7 +1,6 @@
 using MEC;
 using Obvious.Soap;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Weapon : MonoBehaviour
 {

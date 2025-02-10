@@ -1,11 +1,10 @@
 using Obvious.Soap;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Yade.Runtime;
 
 public class RoundTimer : MonoBehaviour
 {
-    [FormerlySerializedAs("_roundPhaseStats")] [SerializeField] private YadeSheetData _roundPhaseData;
+    [SerializeField] private YadeSheetData _roundPhaseData;
     [SerializeField] private IntVariable _currentRoundPhase;
     private float _duration;
     private float _elapsedTime;
@@ -19,11 +18,18 @@ public class RoundTimer : MonoBehaviour
     
     private void Awake()
     {
-        _currentRoundPhase.OnValueChanged += OnRoundPhaseChange;
+        UpdateDuration(0);
         
         ResetPhase();
-
+        
+        _currentRoundPhase.OnValueChanged += UpdateDuration;
+        
         StartTimer();
+    }
+    
+    private void OnDisable()
+    {
+        _currentRoundPhase.OnValueChanged -= UpdateDuration;
     }
     
     private void Update()
@@ -39,35 +45,32 @@ public class RoundTimer : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        _currentRoundPhase.OnValueChanged -= OnRoundPhaseChange;
-    }
-
-    private void OnRoundPhaseChange(int obj)
-    {
-        var list = _roundPhaseData.AsList<RoundPhase>();
-        
-        _duration = float.Parse(list[_currentRoundPhase].Duration);
-                
-        _elapsedTime = 0f;
-    }
-
-    
     private void EnterNextPhase()
     {
+        _currentRoundPhase.Add(1);
+    }
+
+    private void UpdateDuration(int obj)
+    {
         var list = _roundPhaseData.AsList<RoundPhase>();
 
-        if (_currentRoundPhase.Value >= list.Count - 1)
+        if (_currentRoundPhase.Value < list.Count - 1)
         {
-            StopTimer();
+            _duration = float.Parse(list[_currentRoundPhase].Duration);
         }
         else
         {
-            _currentRoundPhase.Add(1);
+            _duration = float.Parse(list[^1].Duration);
         }
+        
+        _elapsedTime = 0f;
     }
-
+    
+    public void ResetPhase()
+    {
+        _currentRoundPhase.Value = _currentRoundPhase.Min;
+    }
+    
     public void StartTimer()
     {
         _elapsedTime = 0;
@@ -78,10 +81,5 @@ public class RoundTimer : MonoBehaviour
     public void StopTimer()
     {
         _isRunning = false;
-    }
-
-    public void ResetPhase()
-    {
-        _currentRoundPhase.Value = 1;
     }
 }

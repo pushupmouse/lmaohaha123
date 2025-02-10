@@ -20,11 +20,11 @@ public class VFXSpawner : MonoBehaviour
     
     private void OnEnemySpawned(Enemy obj)
     {
-        Instantiate(_spawnVfxPrefab.gameObject, obj.transform.position, Quaternion.identity);
+        Instantiate(_spawnVfxPrefab.gameObject, obj.transform.position, Quaternion.identity, transform);
     }
     
     private void OnEnemyDied(Enemy obj)
     {
-        Instantiate(_destroyVfxPrefab.gameObject, obj.transform.position, Quaternion.identity);
+        Instantiate(_destroyVfxPrefab.gameObject, obj.transform.position, Quaternion.identity, transform);
     }
 }

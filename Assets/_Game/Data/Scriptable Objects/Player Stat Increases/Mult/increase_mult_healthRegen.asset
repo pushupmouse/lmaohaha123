@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: increase_mult_healthRegen
   m_EditorClassIdentifier: 
   _statIncreaseData: {fileID: 11400000, guid: 958333f1021b2da43b3877e342bf5ff3, type: 2}
-  _stat: {fileID: 11400000, guid: 592eeb73e74294a41873fd3977d5735f, type: 2}
+  _stat: {fileID: 11400000, guid: 5de97688de4bd774482785f4a09136ce, type: 2}
   _statType: 8
   _statIncreaseType: 1

@@ -1,14 +1,12 @@
 using System.Collections;
-using MEC;
 using Obvious.Soap;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Yade.Runtime;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : Spawner
 {
-    [FormerlySerializedAs("_enemySpawnStats")] [SerializeField] private YadeSheetData _enemySpawnData;
+    [SerializeField] private YadeSheetData _enemySpawnData;
     [SerializeField] private IntVariable _currentRoundPhase;
     [SerializeField] private Enemy _normalPrefab;
     [SerializeField] private Enemy _tankPrefab;
@@ -47,8 +45,8 @@ public class EnemySpawner : Spawner
             _tankPrefab,
             _roguePrefab,
             _slayerPrefab,
+            _jokerPrefab,
             _sniperPrefab,
-            _jokerPrefab
         };
     }
 
@@ -56,8 +54,16 @@ public class EnemySpawner : Spawner
     {
         var list = _enemySpawnData.AsList<EnemySpawn>();
         
-        _spawnInterval = float.Parse(list[_currentRoundPhase].Interval);
-        _amount = int.Parse(list[_currentRoundPhase].Amount);
+        if (_currentRoundPhase.Value < list.Count - 1)
+        {
+            _spawnInterval = float.Parse(list[_currentRoundPhase].Interval);
+            _amount = int.Parse(list[_currentRoundPhase].Amount);
+        }
+        else
+        {
+            _spawnInterval = float.Parse(list[^1].Interval);
+            _amount = int.Parse(list[^1].Amount);
+        }
     }
 
 
@@ -69,12 +75,13 @@ public class EnemySpawner : Spawner
 
         if (_enemyPrefabs[randomIndex] == null)
             return;
-
-        Enemy enemyObj = ObjectPool.Instance.SpawnObject<Enemy>(
-            _enemyPrefabs[randomIndex].gameObject,
+        
+        Enemy enemyObj = Instantiate(
+            _enemyPrefabs[randomIndex],
             new Vector3(spawnPosition.x, 0f, spawnPosition.z),
             Quaternion.identity,
-            PoolType.GameObject);
+            transform
+        );
     }
 }
 

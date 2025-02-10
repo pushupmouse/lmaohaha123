@@ -9,17 +9,16 @@ public class StatIncreaseSelector : MonoBehaviour
 {
     [Header("Stat Increases")]
     [SerializeField] private YadeSheetData _statIncreaseChanceData;
+    [SerializeField] private IntVariable _currentPlayerLevel;
     [SerializeField] private List<StatIncreaseData> _statIncreaseList;
     
+    [Header("UI Elements")]
+    [SerializeField] private StatIncreaseSelectorButton[] _statIncreaseSelectorButtons;
     private List<StatIncreaseData> _commonStatIncreaseList = new List<StatIncreaseData>();
     private List<StatIncreaseData> _rareStatIncreaseList = new List<StatIncreaseData>();
     private List<StatIncreaseData> _epicStatIncreaseList = new List<StatIncreaseData>();
     private List<StatIncreaseData> _legendaryStatIncreaseList = new List<StatIncreaseData>();
-    
-    [Header("UI Elements")]
-    [SerializeField] private StatIncreaseSelectorButton[] _statIncreaseSelectorButtons;
 
-    private int _playerLevel;
     private class StatIncreaseChance
     {
         [DataField(0)] public string Level;
@@ -68,11 +67,9 @@ public class StatIncreaseSelector : MonoBehaviour
         }
     }
     
-    public void DisplayStatIncreaseOptions(int playerLevel)
+    public void DisplayStatIncreaseOptions()
     {
         gameObject.SetActive(true);
-        
-        _playerLevel = playerLevel;
 
         GetRandomStatIncreases();
     }
@@ -131,7 +128,7 @@ private RarityType RollRarity()
 {
     var list = _statIncreaseChanceData.AsList<StatIncreaseChance>();
  
-    int index = Mathf.Min(_playerLevel, list.Count - 1);
+    int index = Mathf.Min(_currentPlayerLevel, list.Count - 1);
 
     float commonRate = float.Parse(list[index].Common);
     float rareRate = float.Parse(list[index].Rare);

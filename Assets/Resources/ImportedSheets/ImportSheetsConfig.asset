@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     items:
-      keys: 0000000001000000020000000300000004000000050000000600000007000000
+      keys: 000000000100000002000000030000000400000005000000060000000700000008000000
       values:
       - height: 25
         cells:
@@ -142,6 +142,22 @@ MonoBehaviour:
             UOs: []
           - rawValue: 
             value: StatIncreaseChance
+            UnityObject: {fileID: 0}
+            UOs: []
+      - height: 25
+        cells:
+          keys: 000000000100000002000000
+          values:
+          - rawValue: 
+            value: https://docs.google.com/spreadsheets/d/1JrKqC_05uxrIXVH_h_uRoV42GXzX6Ae4BQWZ1XIL8A4/edit?gid=1424349927#gid=1424349927
+            UnityObject: {fileID: 0}
+            UOs: []
+          - rawValue: 
+            value: Assets/Resources/ImportedSheets/Enemy
+            UnityObject: {fileID: 0}
+            UOs: []
+          - rawValue: 
+            value: EnemyGrowthStats
             UnityObject: {fileID: 0}
             UOs: []
   columnHeaders:

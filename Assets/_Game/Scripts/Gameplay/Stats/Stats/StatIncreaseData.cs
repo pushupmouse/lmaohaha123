@@ -61,7 +61,7 @@ public class StatIncreaseData : AbilityData
     
     public override string GetDescription()
     {
-        _description = "+{0} " + _statIncreaseType.GetEnumDescription() + " " + _statType.GetEnumDescription();
+        _description = "+{0} " + _statType.GetEnumDescription() + " " + _statIncreaseType.GetEnumDescription();
         var formattedValue = $"{(_isPercent ? _increase * 100 : _increase)}{(_isPercent ? "%" : "")}";
         return string.Format(_description, formattedValue);
     }
@@ -74,9 +74,8 @@ public class StatIncreaseData : AbilityData
 
 public enum StatIncreaseType
 {
-    [Description("Base")]
     Base,
-    [Description("TOTAL Base")]
+    [Description("Bonus")]
     Mult,
 }
 
@@ -88,21 +87,21 @@ public enum StatType
     AttackSpeed,
     [Description("Crit Rate")]
     CritRate,
-    [Description("Crit Multiplier")]
+    [Description("Crit DMG")]
     CritMult,
-    [Description("Amp")]
+    [Description("DMG")]
     Amp,
-    [Description("Penetration")]
+    [Description("Def Ignore")]
     Penetration,
-    [Description("Max Health")]
+    [Description("Max HP")]
     MaxHealth,
     [Description("Defense")]
     Defense,
-    [Description("Health Regen")]
+    [Description("HP Regen")]
     HealthRegen,
     [Description("Speed")]
     Speed,
-    [Description("Max Range")]
+    [Description("Attack Range")]
     MaxRange
 }
 
@@ -127,7 +126,7 @@ public static class StatExtensions
         // Get the description attribute from the field
         var attribute = field?.GetCustomAttribute<DescriptionAttribute>();
 
-        // Return the description if it exists, otherwise return the enum name
-        return attribute?.Description ?? value.ToString();
+        // Return the description if it exists
+        return attribute?.Description;
     }
 }

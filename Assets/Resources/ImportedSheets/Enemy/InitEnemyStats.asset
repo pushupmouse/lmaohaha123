@@ -69,7 +69,7 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 5
+            value: 4
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -85,11 +85,11 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 1
+            value: 0.5
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 2
+            value: 1
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -117,7 +117,7 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 5
+            value: 4
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -129,15 +129,15 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 3
+            value: 2.5
+            UnityObject: {fileID: 0}
+            UOs: []
+          - rawValue: 
+            value: 0.5
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
             value: 1
-            UnityObject: {fileID: 0}
-            UOs: []
-          - rawValue: 
-            value: 2
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -165,7 +165,7 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 5
+            value: 4
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -177,15 +177,15 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 7
+            value: 7.5
+            UnityObject: {fileID: 0}
+            UOs: []
+          - rawValue: 
+            value: 0.5
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
             value: 1
-            UnityObject: {fileID: 0}
-            UOs: []
-          - rawValue: 
-            value: 2
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -213,11 +213,11 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 15
+            value: 12
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 20
+            value: 40
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -229,11 +229,11 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 1.5
+            value: 0.75
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 2
+            value: 1
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -261,11 +261,11 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 10
+            value: 8
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 20
+            value: 40
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -277,11 +277,11 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 1
+            value: 0.5
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 2
+            value: 1
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -309,7 +309,7 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 15
+            value: 8
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -321,15 +321,7 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 3
-            UnityObject: {fileID: 0}
-            UOs: []
-          - rawValue: 
-            value: 1
-            UnityObject: {fileID: 0}
-            UOs: []
-          - rawValue: 
-            value: 10
+            value: 2.5
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
@@ -337,15 +329,23 @@ MonoBehaviour:
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 1.5
+            value: 10
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 0.05
+            value: 0
             UnityObject: {fileID: 0}
             UOs: []
           - rawValue: 
-            value: 0.45
+            value: 0
+            UnityObject: {fileID: 0}
+            UOs: []
+          - rawValue: 
+            value: 0
+            UnityObject: {fileID: 0}
+            UOs: []
+          - rawValue: 
+            value: 0.15
             UnityObject: {fileID: 0}
             UOs: []
   columnHeaders:

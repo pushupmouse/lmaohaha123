@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfae7c5fd6f8f0a458861ca8cd4a0155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onPickedUpEvent: {fileID: 11400000, guid: ad5d0dcf22a844046a0c69006fdf7c35, type: 2}
+  _onPickedUpEvent: {fileID: 11400000, guid: 3f696458928be9e48a37534e85adc6eb, type: 2}

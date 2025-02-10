@@ -8,9 +8,9 @@ public abstract class Spawner : MonoBehaviour
 {
     [SerializeField] private Vector3Variable _playerPosition;
     [SerializeField] private Vector2 _spawnRange;
-    protected float _initialDelay = 4f;
-    protected float _spawnInterval = 1f;
-    protected int _amount = 1;
+    protected float _initialDelay;
+    protected float _spawnInterval;
+    protected int _amount;
 
     private float _currentAngle;
     private float _timer;

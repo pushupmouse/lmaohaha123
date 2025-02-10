@@ -12,7 +12,7 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] private FloatVariable _maxExperience;
     [SerializeField] private FloatVariable _maxExperienceIncrement;
     [SerializeField] private FloatVariable _maxExperienceMult;
-    [SerializeField] private ScriptableEventInt _onLevelUp;
+    [SerializeField] private ScriptableEventNoParam _onLevelUp;
 
     private void Awake()
     {
@@ -28,8 +28,8 @@ public class PlayerLevel : MonoBehaviour
     [ContextMenu("Level Up")]
     public void LevelUp()
     {
+        _onLevelUp.Raise();
         _currentLevel.Add(1);
-        _onLevelUp.Raise(_currentLevel);
     }
     
     private void UpdateMaxExperience(int obj)
